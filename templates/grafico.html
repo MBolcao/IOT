@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gráfico com Flask e Plotly</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        #chart {
+            margin: 0 auto;
+            max-width: 800px;
+            height: 400px;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #008cba;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 0 10px;
+        }
+
+        button:hover {
+            background-color: #005f75;
+        }
+        
+    </style>
+
+    
+</head>
+<body>
+    <h1>{{nome_grafico}}</h1>
+    <div id="chart"></div>
+
+    
+    <div class="button-container">
+        <button onclick="navigateTo('')">Voltar</button>
+        <input type="email" id="emailInput" placeholder="Digite seu email">
+        <button onclick="sendEmail()">Enviar Email</button>
+        
+    </div>
+    
+    <script>
+        var graphJSON = {{ graph_json | safe }};
+        Plotly.newPlot('chart', graphJSON.data, graphJSON.layout);
+
+        const baseUrl = 'https://322a095c-b502-4fc6-ba6a-e7e7041c6d62-00-lr04j98a0ay8.spock.replit.dev/';
+
+        function navigateTo(route) {
+            window.location.href = baseUrl + route;
+        }
+        function sendEmail(){
+            var email = document.getElementById('emailInput').value;
+            window.location.href = baseUrl + 'enviarEmail/' + email;
+        }
+    </script>
+    
+</body>
+</html>

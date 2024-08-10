@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards com Botões</title>
+    <link rel="stylesheet" href="styles.css">
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    background-color: #d0c4a0; /* Tom pastel escurecido */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+}
+
+button {
+    background-color: #008cba;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #005f75;
+}
+
+input[type="text"] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.titulo-centralizado {
+  text-align: center; /* Centraliza o texto */
+  font-size: 3rem; /* Define o tamanho da fonte */
+  font-family: Arial, sans-serif; /* Define a família da fonte */
+  color: #333; /* Define a cor do texto */
+  margin-top: 50px; /* Adiciona uma margem superior */
+  margin-bottom: 20px; /* Adiciona uma margem inferior */
+  letter-spacing: 2px; /* Adiciona espaço entre as letras */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra */
+}
+
+</style>
+
+</head>
+<body>
+  <h1 class="titulo-centralizado">Funções para análise do fluxo de caixa</h1>
+
+
+    <div class="container">
+        <div class="card">
+            <h3>Total Fluxo de Caixa</h3>
+            <p>Mostra as receitas e despesas das empresas agrupadas.</p>
+            <button onclick="navigateTo('graficoReceita')">Mostrar</button>
+        </div>
+        <div class="card">
+            <h3>Fluxo de Caixa - Empresa</h3>
+            <p>Mostra as receitas e despesas das empresas separadas.</p>
+            <button onclick="navigateTo('graficoReceitaEmp')">Mostrar</button>
+        </div>
+        <div class="card">
+            <h3>Fluxo de caixa no tempo</h3>
+            <p>Mostra o fluxo de caixa da empresa selecionada no tempo.</p>
+            <input type="text" id="IDEmpresa1" placeholder="ID da Empresa">
+            <button onclick="navigateToEmp('graficoReceitaEmp')">Mostrar</button>
+        </div>
+        <div class="card">
+            <h3>Fluxo Detalhado</h3>
+            <input type="text" id="campo1" placeholder="ID da Empresa">
+            <input type="text" id="campo2" placeholder="E-Entrada; S-Saídas">
+            <button onclick="createLink()">Mostrar</button>
+        </div>
+        <!-- Adicione mais cards conforme necessário -->
+    </div>
+
+
+
+    <script>
+        const baseUrl = 'https://322a095c-b502-4fc6-ba6a-e7e7041c6d62-00-lr04j98a0ay8.spock.replit.dev/';
+
+        function navigateTo(route) {
+            window.location.href = baseUrl + route;
+        }
+
+        function createLink() {
+            const campo1 = document.getElementById('campo1').value;
+            const campo2 = document.getElementById('campo2').value;
+            const fullUrl = `${baseUrl}Valores/${campo1}/${campo2}`;
+            window.location.href = fullUrl;
+        }
+
+        function navigateToEmp() {
+            const campo1 = document.getElementById('IDEmpresa1').value;
+            const fullUrl = `${baseUrl}Linha/${campo1}`;
+            window.location.href = fullUrl;
+        }
+
+    </script>
+
+
+</body>
+</html>
